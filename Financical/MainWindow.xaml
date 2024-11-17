@@ -1,0 +1,54 @@
+﻿<Window x:Class="Financical.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc ="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Financical"
+        mc:Ignorable="d"
+        Title="Financial" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Ввод финансов -->
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="9">
+            <StackPanel Margin="0,0,0,-30">
+                <TextBlock Text="Ввод финансов" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+                <TextBox Name="AmountInput" Text="Введите сумму" Margin="0,0,0,10" />
+                <TextBox Name="NeedsInput" Text="нужды" Margin="0,0,0,10" />
+                <TextBox Name="WantsInput" Text="хотелки" Margin="0,0,0,10" />
+                <TextBox Name="SavingsInput" Text="В казну" Margin="0,0,0,10" />
+                <ComboBox Name="CurrencySelector" Margin="0,0,0,10">
+                    <ComboBoxItem Content="USD" />
+                    <ComboBoxItem Content="EUR" />
+                    <ComboBoxItem Content="RUB" />
+                </ComboBox>
+                <Button Content="Добавить" Width="100" Click="AddFinances" />
+            </StackPanel>
+        </Border>
+
+        <!-- Курсы валют -->
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10">
+            <StackPanel>
+                <TextBlock Text="Курсы валют (реальное время)" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+                <ListBox Name="CurrencyRatesList" ItemsSource="{Binding CurrencyRates}" Height="168" />
+            </StackPanel>
+        </Border>
+        <!-- Круговые графики -->
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="10">
+            <lvc:PieChart x:Name="pieChart" Width="300" Margin="39,0,39,-1" />
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10">
+            <lvc:PieChart x:Name="normalDiagram" Width="300" Margin="39,0,39,-1" />
+        </Border>
+    </Grid>
+</Window>
+    
+    
